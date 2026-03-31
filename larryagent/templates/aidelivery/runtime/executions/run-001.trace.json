@@ -1,0 +1,15 @@
+{
+  "workflow_id": "generated-workflow-001",
+  "steps": [
+    {
+      "step_id": "requirement-analysis",
+      "status": "success",
+      "retry_count": 0
+    },
+    {
+      "step_id": "spec-generation",
+      "status": "success",
+      "retry_count": 0
+    }
+  ]
+}

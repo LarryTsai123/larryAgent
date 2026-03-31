@@ -1,0 +1,17 @@
+{
+  "required_capabilities": [
+    "requirement-analysis",
+    "spec-generation",
+    "design-generation",
+    "task-slicing",
+    "api-design",
+    "backend-implementation",
+    "frontend-implementation",
+    "test-design",
+    "integration-test",
+    "runtime-validation",
+    "code-review-request"
+  ],
+  "missing_capabilities": [],
+  "selected_workflow_template": "feature-delivery"
+}

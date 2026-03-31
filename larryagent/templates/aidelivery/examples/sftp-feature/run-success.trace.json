@@ -1,0 +1,55 @@
+{
+  "workflow_id": "sftp-feature-001",
+  "steps": [
+    {
+      "step_id": "requirement-analysis",
+      "status": "success",
+      "start_time": "2026-03-31T09:00:00+08:00",
+      "end_time": "2026-03-31T09:00:10+08:00",
+      "inputs": [
+        "normalized_requirement"
+      ],
+      "outputs": [
+        "requirement-analysis.md"
+      ],
+      "evidence": [
+        "requirement-analysis.md"
+      ],
+      "retry_count": 0
+    },
+    {
+      "step_id": "spec-generation",
+      "status": "success",
+      "start_time": "2026-03-31T09:00:11+08:00",
+      "end_time": "2026-03-31T09:00:20+08:00",
+      "inputs": [
+        "requirement-analysis.md"
+      ],
+      "outputs": [
+        "spec.md"
+      ],
+      "evidence": [
+        "spec.md"
+      ],
+      "retry_count": 0
+    },
+    {
+      "step_id": "design-generation",
+      "status": "success",
+      "start_time": "2026-03-31T09:00:21+08:00",
+      "end_time": "2026-03-31T09:00:30+08:00",
+      "inputs": [
+        "requirement-analysis.md",
+        "spec.md"
+      ],
+      "outputs": [
+        "design.md"
+      ],
+      "evidence": [
+        "design.md"
+      ],
+      "retry_count": 0
+    }
+  ],
+  "status": "success"
+}

@@ -1,0 +1,35 @@
+extends: ../_base/base-contract.yaml
+name: design-generation
+version: "1.0.0"
+description: Generate design.md from requirement analysis and spec.
+inputs:
+  required:
+    - requirement-analysis.md
+    - spec.md
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - design.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - design.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - design-must-be-produced

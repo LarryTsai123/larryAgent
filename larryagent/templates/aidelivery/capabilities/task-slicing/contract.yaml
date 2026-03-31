@@ -1,0 +1,35 @@
+extends: ../_base/base-contract.yaml
+name: task-slicing
+version: "1.0.0"
+description: Generate tasks.md with independently verifiable tasks.
+inputs:
+  required:
+    - spec.md
+    - design.md
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - tasks.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - tasks.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - tasks-must-be-produced

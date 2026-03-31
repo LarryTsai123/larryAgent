@@ -1,0 +1,35 @@
+extends: ../_base/base-contract.yaml
+name: api-design
+version: "1.0.0"
+description: Design API contract and technical endpoints.
+inputs:
+  required:
+    - spec.md
+    - design.md
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - api-contract.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - api-contract.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - api-contract-required-if-api-work

@@ -1,0 +1,37 @@
+extends: ../_base/base-contract.yaml
+name: backend-implementation
+version: "1.0.0"
+description: Implement backend changes for the scoped work.
+inputs:
+  required:
+    - tasks.md
+    - design.md
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - changed_files
+    - implementation_summary
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - changed_files
+  - implementation_summary
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - build-must-pass-if-code-changed

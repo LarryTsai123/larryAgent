@@ -1,0 +1,35 @@
+extends: ../_base/base-contract.yaml
+name: integration-test
+version: "1.0.0"
+description: Run integration tests for the delivery workflow.
+inputs:
+  required:
+    - test-plan.md
+    - changed_files
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - integration-test-report.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - integration-test-report.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - integration-tests-required

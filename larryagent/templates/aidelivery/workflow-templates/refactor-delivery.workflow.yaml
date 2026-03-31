@@ -1,0 +1,15 @@
+name: refactor-delivery
+version: 1.0.0
+default_steps:
+- requirement-analysis
+- spec-generation
+- design-generation
+- task-slicing
+- test-design
+- backend-implementation
+- integration-test
+- code-review-request
+mandatory_quality_gates:
+- evidence-required
+- validation-report-required
+- delivery-summary-required

@@ -1,0 +1,319 @@
+{
+  "workflow_id": "sftp-feature-001",
+  "template": "feature-delivery",
+  "version": "1.0.0",
+  "steps": [
+    {
+      "id": "requirement-analysis",
+      "capability": "requirement-analysis",
+      "depends_on": [],
+      "inputs": [
+        "normalized_requirement"
+      ],
+      "outputs": [
+        "requirement-analysis.md"
+      ],
+      "success_criteria": [
+        "analysis produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "requirement-analysis.md"
+      ],
+      "on_success": "spec-generation",
+      "on_failure": "stop"
+    },
+    {
+      "id": "spec-generation",
+      "capability": "spec-generation",
+      "depends_on": [
+        "requirement-analysis"
+      ],
+      "inputs": [
+        "requirement-analysis.md"
+      ],
+      "outputs": [
+        "spec.md"
+      ],
+      "success_criteria": [
+        "spec produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "spec.md"
+      ],
+      "on_success": "design-generation",
+      "on_failure": "stop"
+    },
+    {
+      "id": "design-generation",
+      "capability": "design-generation",
+      "depends_on": [
+        "spec-generation"
+      ],
+      "inputs": [
+        "requirement-analysis.md",
+        "spec.md"
+      ],
+      "outputs": [
+        "design.md"
+      ],
+      "success_criteria": [
+        "design produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "design.md"
+      ],
+      "on_success": "task-slicing",
+      "on_failure": "stop"
+    },
+    {
+      "id": "task-slicing",
+      "capability": "task-slicing",
+      "depends_on": [
+        "design-generation"
+      ],
+      "inputs": [
+        "spec.md",
+        "design.md"
+      ],
+      "outputs": [
+        "tasks.md"
+      ],
+      "success_criteria": [
+        "tasks produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "tasks.md"
+      ],
+      "on_success": "test-design",
+      "on_failure": "stop"
+    },
+    {
+      "id": "test-design",
+      "capability": "test-design",
+      "depends_on": [
+        "task-slicing"
+      ],
+      "inputs": [
+        "spec.md",
+        "design.md",
+        "tasks.md"
+      ],
+      "outputs": [
+        "test-plan.md"
+      ],
+      "success_criteria": [
+        "test plan produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "test-plan.md"
+      ],
+      "on_success": "api-design",
+      "on_failure": "stop"
+    },
+    {
+      "id": "api-design",
+      "capability": "api-design",
+      "depends_on": [
+        "test-design"
+      ],
+      "inputs": [
+        "spec.md",
+        "design.md"
+      ],
+      "outputs": [
+        "api-contract.md"
+      ],
+      "success_criteria": [
+        "api contract produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "api-contract.md"
+      ],
+      "on_success": "backend-implementation",
+      "on_failure": "stop"
+    },
+    {
+      "id": "backend-implementation",
+      "capability": "backend-implementation",
+      "depends_on": [
+        "api-design"
+      ],
+      "inputs": [
+        "tasks.md",
+        "design.md"
+      ],
+      "outputs": [
+        "changed_files",
+        "implementation_summary"
+      ],
+      "success_criteria": [
+        "backend implemented"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "changed_files",
+        "implementation_summary"
+      ],
+      "on_success": "frontend-implementation",
+      "on_failure": "stop"
+    },
+    {
+      "id": "frontend-implementation",
+      "capability": "frontend-implementation",
+      "depends_on": [
+        "backend-implementation"
+      ],
+      "inputs": [
+        "tasks.md",
+        "design.md"
+      ],
+      "outputs": [
+        "changed_files",
+        "implementation_summary"
+      ],
+      "success_criteria": [
+        "frontend implemented"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "changed_files",
+        "implementation_summary"
+      ],
+      "on_success": "integration-test",
+      "on_failure": "stop"
+    },
+    {
+      "id": "integration-test",
+      "capability": "integration-test",
+      "depends_on": [
+        "frontend-implementation"
+      ],
+      "inputs": [
+        "test-plan.md",
+        "changed_files"
+      ],
+      "outputs": [
+        "integration-test-report.md"
+      ],
+      "success_criteria": [
+        "integration tests passed"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "integration-test-report.md"
+      ],
+      "on_success": "runtime-validation",
+      "on_failure": "stop"
+    },
+    {
+      "id": "runtime-validation",
+      "capability": "runtime-validation",
+      "depends_on": [
+        "integration-test"
+      ],
+      "inputs": [
+        "changed_files"
+      ],
+      "outputs": [
+        "runtime-validation-report.md"
+      ],
+      "success_criteria": [
+        "runtime validation passed"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "runtime-validation-report.md"
+      ],
+      "on_success": "code-review-request",
+      "on_failure": "stop"
+    },
+    {
+      "id": "code-review-request",
+      "capability": "code-review-request",
+      "depends_on": [
+        "runtime-validation"
+      ],
+      "inputs": [
+        "changed_files",
+        "implementation_summary"
+      ],
+      "outputs": [
+        "code-review-summary.md"
+      ],
+      "success_criteria": [
+        "review summary produced"
+      ],
+      "failure_codes": [
+        "MISSING_INPUT",
+        "VALIDATION_FAILED",
+        "EXECUTION_ERROR",
+        "UNKNOWN_ERROR"
+      ],
+      "evidence_required": [
+        "code-review-summary.md"
+      ],
+      "on_success": "complete",
+      "on_failure": "stop"
+    }
+  ],
+  "completion_criteria": [
+    "all required steps succeeded",
+    "required evidence collected"
+  ]
+}

@@ -1,0 +1,28 @@
+version: "1.0.0"
+common_inputs:
+  required:
+    - project_context
+    - workflow_context
+    - step_context
+  optional:
+    - planning_artifacts
+common_outputs:
+  required:
+    - status
+    - evidence
+    - logs
+standard_status:
+  - success
+  - failed
+  - blocked
+  - partial
+standard_failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_shape:
+  type: object
+  required:
+    - keys
+    - summary

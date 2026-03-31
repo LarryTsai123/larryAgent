@@ -1,0 +1,36 @@
+extends: ../_base/base-contract.yaml
+name: test-design
+version: "1.0.0"
+description: Design test strategy and validation scope.
+inputs:
+  required:
+    - spec.md
+    - design.md
+    - tasks.md
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - test-plan.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - test-plan.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - test-plan-required

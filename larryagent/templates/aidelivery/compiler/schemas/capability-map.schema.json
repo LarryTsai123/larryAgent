@@ -1,0 +1,26 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "required": [
+    "required_capabilities",
+    "missing_capabilities",
+    "selected_workflow_template"
+  ],
+  "properties": {
+    "required_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "missing_capabilities": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "selected_workflow_template": {
+      "type": "string"
+    }
+  }
+}

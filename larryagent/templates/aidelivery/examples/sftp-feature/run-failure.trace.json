@@ -1,0 +1,17 @@
+{
+  "workflow_id": "sftp-feature-001",
+  "steps": [
+    {
+      "step_id": "requirement-analysis",
+      "status": "success",
+      "retry_count": 0
+    },
+    {
+      "step_id": "spec-generation",
+      "status": "failed",
+      "failure_code": "MISSING_INPUT",
+      "retry_count": 0
+    }
+  ],
+  "status": "failed"
+}

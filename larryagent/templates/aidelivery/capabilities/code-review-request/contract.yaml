@@ -1,0 +1,35 @@
+extends: ../_base/base-contract.yaml
+name: code-review-request
+version: "1.0.0"
+description: Produce a review summary or review request package.
+inputs:
+  required:
+    - changed_files
+    - implementation_summary
+  optional:
+    - existing_files
+    - prior_evidence
+outputs:
+  required:
+    - code-review-summary.md
+  optional:
+    - followup_risks
+success_status:
+  - success
+failure_status:
+  - failed
+  - blocked
+  - partial
+failure_codes:
+  - MISSING_INPUT
+  - VALIDATION_FAILED
+  - EXECUTION_ERROR
+  - UNKNOWN_ERROR
+evidence_required:
+  - code-review-summary.md
+retry_policy:
+  retryable_failure_codes:
+    - UNKNOWN_ERROR
+  max_retries: 1
+quality_gates:
+  - review-summary-required
