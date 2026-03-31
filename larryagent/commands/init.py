@@ -29,8 +29,8 @@ def init():
 
     project_root_template = package_root / "templates" / "project_root"
     _copy_if_missing(project_root_template / "AGENTS.md", project_root / "AGENTS.md")
-    _copy_if_missing(project_root_template / ".github" / "copilot-instructions.md", project_root / ".github" / "copilot-instructions.md")
-    _copy_if_missing(project_root_template / ".github" / "agents", project_root / ".github" / "agents")
-    _copy_if_missing(project_root_template / ".github" / "instructions", project_root / ".github" / "instructions")
+    _copy_if_missing(project_root_template / "github_files" / "copilot-instructions.md", project_root / "github_files" / "copilot-instructions.md")
+    _copy_if_missing(project_root_template / "github_files" / "agents", project_root / "github_files" / "agents")
+    _copy_if_missing(project_root_template / "github_files" / "instructions", project_root / "github_files" / "instructions")
 
     print("✅ larryAgent initialized")
